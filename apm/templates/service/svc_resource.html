@@ -1,0 +1,47 @@
+{% extends "svc_base.html" %}
+{% block title %}AIPMO's Resource Management{% endblock %}
+{% block cur_page_name %}<li>Resource</li>{% endblock %}
+{% block page_name_nav %}<h4 class="content-title pull-left">Resource Management</h4>{% endblock %}
+{% block tab_name %}<h4><i class="fa fa-table"></i>Resource Information</h4>{% endblock %}
+<!-- Replace the BODY of template svc_base.html -->
+{% block tab_model %}
+<table id="datatable1" cellpadding="0"
+       cellspacing="0" border="0"
+       class="datatable table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+		  <th>Resource Name</th>
+		  <th>Resource Owner</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for res in resource %}
+		<tr class="gradeA">
+		  <td>{{ res.apm_resource_name }}</td>
+		  <td>{{ res.apm_user.apm_user_name }}</td>
+		  <td class="hidden-xs">
+			  {% if res.status == '1' %}
+			  Valid
+			  {% else %}
+			  Invalid
+			  {% endif %}
+		  </td>
+		  <td>{{ res.create_date }}</td>
+		  <td class="hidden-xs">{{ res.remark }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+          <th>Resource Name</th>
+		  <th>Resource Owner</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</tfoot>
+</table>
+{% endblock %}

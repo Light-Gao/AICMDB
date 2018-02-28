@@ -1,0 +1,50 @@
+{% extends "svc_base.html" %}
+{% block title %}AIPMO's Service Instance{% endblock %}
+{% block cur_page_name %}<li>Service Instance</li>{% endblock %}
+{% block page_name_nav %}<h4 class="content-title pull-left">Service Instance</h4>{% endblock %}
+{% block tab_name %}<h4><i class="fa fa-table"></i>Service Instance Information</h4>{% endblock %}
+<!-- Replace the BODY of template svc_base.html -->
+{% block tab_model %}
+<table id="datatable1" cellpadding="0"
+       cellspacing="0" border="0"
+       class="datatable table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+		  <th>Instance Name</th>
+		  <th>Instance Owner</th>
+          <th>Service Name</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for svc_inst in svc_instance %}
+		<tr class="gradeA">
+		  <td>{{ svc_inst.apm_svc_inst_name }}</td>
+		  <td>{{ svc_inst.apm_user.apm_user_name }}</td>
+          <td>{{ svc_inst.apm_service.apm_service_name }}</td>
+		  <td class="hidden-xs">
+			  {% if svc_inst.status == '1' %}
+			  Valid
+			  {% else %}
+			  Invalid
+			  {% endif %}
+		  </td>
+		  <td>{{ svc_inst.create_date }}</td>
+		  <td class="hidden-xs">{{ svc_inst.remark }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+          <th>Instance Name</th>
+		  <th>Instance Owner</th>
+          <th>Service Name</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</tfoot>
+</table>
+{% endblock %}

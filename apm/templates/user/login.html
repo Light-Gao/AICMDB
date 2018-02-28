@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>AICMDB | Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cloud-admin.css') }}" >
+
+	<link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='js/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='js/uniform/css/uniform.default.min.css') }}" />
+	<!-- ANIMATE -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animatecss/animate.min.css') }}" />
+</head>
+<body class="login">
+	<!-- PAGE -->
+	<section id="page">
+			<!-- LOGIN -->
+			<section id="login" class="visible">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h3 class="bigintro">Sign In</h3>
+								<div class="divide-40"></div>
+								<form method="POST" action="{{ url_for('user.user_login') }}">
+								  {{ form.hidden_tag() }}
+								  <div class="form-group">
+									{{ form.user_name.label }}
+									{% if form.user_name.errors %}
+        								{% for e in form.user_name.errors %}
+          									<p class="help-block">{{ e }}</p>
+        								{% endfor %}
+      								{% endif %}
+									<i class="fa fa-envelope"></i>
+								    {{ form.user_name(class_="form-control") }}
+								  </div>
+								  <div class="form-group">
+									{{ form.user_passwd.label }}
+									{% if form.user_passwd.errors %}
+        								{% for e in form.user_passwd.errors %}
+          									<p class="help-block">{{ e }}</p>
+        								{% endfor %}
+      								{% endif %}
+									<i class="fa fa-lock"></i>
+									{{ form.user_passwd(class_='form-control') }}
+								  </div>
+								  <div class="form-actions">
+									<button class="btn btn-danger">Login Now</button>
+								  </div>
+								</form>
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('forgot');return false;">Forgot Password?</a> <br>
+									Don't have an account with us? <a href="#" onclick="swapScreen('register');return false;">Register
+										now!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/LOGIN -->
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="{{ url_for('static', filename='js/jquery/jquery-2.0.3.min.js') }}"></script>
+	<!-- JQUERY UI-->
+	<script src="{{ url_for('static', filename='js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+	<!-- BOOTSTRAP -->
+	<script src="{{ url_for('static', filename='bootstrap-dist/js/bootstrap.min.js') }}"></script>
+
+
+	<!-- UNIFORM -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/uniform/jquery.uniform.min.js') }}"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	<script>
+		jQuery(document).ready(function() {
+			App.setPage("login");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<script type="text/javascript">
+		function swapScreen(id) {
+			jQuery('.visible').removeClass('visible animated fadeInUp');
+			jQuery('#'+id).addClass('visible animated fadeInUp');
+		}
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

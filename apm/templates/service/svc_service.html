@@ -1,0 +1,49 @@
+{% extends "svc_base.html" %}
+{% block title %}AIPMO's Service Management{% endblock %}
+{% block cur_page_name %}<li>Service</li>{% endblock %}
+{% block page_name_nav %}<h4 class="content-title pull-left">Service Management</h4>{% endblock %}
+{% block tab_name %}<h4><i class="fa fa-table"></i>Service Information</h4>{% endblock %}
+<!-- Replace the BODY of template svc_base.html -->
+{% block tab_model %}
+<table id="datatable1" cellpadding="0"
+       cellspacing="0" border="0"
+       class="datatable table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+		  <th>Service Name</th>
+		  <th>Service Owner</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for svc in service %}
+		<tr class="gradeA">
+			<td><a href = "{{ url_for('svc.add_svc_instance', service_id = svc.apm_service_id) }}">
+				{{ svc.apm_service_name }}</a>
+			</td>
+		  <td>{{ svc.apm_user.apm_user_name }}</td>
+		  <td class="hidden-xs">
+			  {% if svc.status == '1' %}
+			  Valid
+			  {% else %}
+			  Invalid
+			  {% endif %}
+		  </td>
+		  <td>{{ svc.create_date }}</td>
+		  <td class="hidden-xs">{{ svc.remark }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr>
+          <th>Service Name</th>
+		  <th>Service Owner</th>
+		  <th class="hidden-xs">status</th>
+		  <th>Create Date</th>
+		  <th class="hidden-xs">Remark</th>
+		</tr>
+	</tfoot>
+</table>
+{% endblock %}

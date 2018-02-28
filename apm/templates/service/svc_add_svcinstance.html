@@ -1,0 +1,65 @@
+{% extends "svc_base.html"%}
+{% block title %}Add instance for {{ svc.apm_service_name }}{% endblock %}
+{% block page_name_nav %}<h5 class="content-title pull-left">Add Service Instance</h5>{% endblock %}
+<!-- Replace the BODY of template svc_base.html -->
+{% block box %}
+<h4>
+  <p><b><font size="4">
+    [{{ svc.apm_service_name }}]
+  </font></b></p>
+  <p><font size="3">
+    {{ svc.remark }}
+  </font></p>
+</h4>
+<div class="separator"></div>
+
+<div class="col-md-12">
+    <div class="box border dark">
+        <div class="box-title">
+            <h4><i class="fa fa-bars"></i>Add Service Instance</h4>
+            <div class="tools">
+                <a href="#box-config" data-toggle="modal" class="config">
+                    <i class="fa fa-cog"></i>
+                </a>
+                <a href="javascript:;" class="reload">
+                    <i class="fa fa-refresh"></i>
+                </a>
+                <a href="javascript:;" class="collapse">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a href="javascript:;" class="remove">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form class="form-horizontal" method="POST"
+                  action="{{ url_for('svc.add_svc_instance', service_id=svc.apm_service_id) }}">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                <label class="col-md-2 control-label">Service Instance Name</label>
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                      {{ form.name(class_="form-control", placeholder="Instance Name here...") }}
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Remark</label>
+                <div class="col-md-10">
+                   <div class="col-md-10">
+                       {{ form.remark(rows="2", cols="5", id="remark", class="countable form-control") }}
+                   </div>
+                </div>
+              </div>
+              <div class="checkbox">
+                  <label><input type="checkbox" checked> Active Now!</label>
+              </div>
+              <button type="submit" class="btn btn-success">Add Now</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

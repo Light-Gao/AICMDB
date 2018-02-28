@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>{% block title %}AIPMO's CMDB{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/cloud-admin.css') }}" >
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/themes/graphite.css') }}" >
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
+	<!-- ANIMATE -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animatecss/animate.min.css') }}" />
+
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix" id="header">
+		<div class="container">
+				<div class="navbar-brand">
+					<!-- SIDEBAR COLLAPSE -->
+					<div id="sidebar-collapse" class="sidebar-collapse btn">
+						<i class="fa fa-bars"
+							data-icon1="fa fa-bars"
+							data-icon2="fa fa-bars" >
+						</i>
+					</div>
+					<!-- /SIDEBAR COLLAPSE -->
+					<!-- COMPANY LOGO -->
+					<a href="{{ url_for('svc.dashboard') }}">
+						<img src="{{ url_for('static', filename='img/logo/logo2.png') }}"
+                             alt="Cloud Admin Logo"
+                             class="img-responsive"
+                             height="30"
+                             width="120">
+					</a>
+					<!-- /COMPANY LOGO -->
+				</div>
+		</div>
+	</header>
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+				<!-- SIDEBAR -->
+				{% block sidebar %}
+				<div id="sidebar" class="sidebar">
+					<div class="sidebar-menu nav-collapse">
+						<div class="divide-20"></div>
+						<!-- SIDEBAR MENU -->
+						<ul>
+							<li class="active">
+								<a href="{{ url_for('svc.dashboard') }}">
+								<i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">Dashboard</span>
+								<span class="selected"></span>
+								</a>
+							</li>
+							<li class="has-sub">
+								<a href="javascript:;" class="">
+								<i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">Service Manager</span>
+								<span class="arrow"></span>
+								</a>
+								<ul class="sub">
+									<li><a class="" href="{{ url_for('svc.show_svc') }}"><span class="sub-menu-text">Service</span></a></li>
+									<li><a class="" href="{{ url_for('svc.show_resource') }}"><span class="sub-menu-text">Resource</span></a></li>
+									<li><a class="" href="{{ url_for('svc.show_svc_instance') }}"><span class="sub-menu-text">Service Instance</span></a></li>
+								</ul>
+							</li>
+						</ul>
+						<!-- /SIDEBAR MENU -->
+					</div>
+				</div>
+				{% endblock %}
+				<!-- /SIDEBAR -->
+		{% block main %}
+		<div id="main-content">
+			<div class="container">
+				<div class="row">
+					<div id="content" class="col-lg-12">
+						<!-- PAGE HEADER-->
+						{% block page_head %}
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="page-header">
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb">
+										<li>
+											<i class="fa fa-home"></i>
+											<a href="{{ url_for('svc.dashboard') }}">Home</a>
+										</li>
+										{% block cur_page_name %}
+										<li>Dashboard</li>
+										{% endblock %}
+									</ul>
+									<!-- /BREADCRUMBS -->
+									<div class="clearfix">
+										{% block page_name_nav %}
+										<h4 class="content-title pull-left">Dashboard</h4>
+										{% endblock %}
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endblock %}
+						<!-- /PAGE HEADER -->
+						<!-- DATA TABLES -->
+						<div class="row">
+							<div class="col-md-12">
+								<!-- BOX -->
+								{% block box %}
+								<div class="box border dark">
+									<div class="box-title">
+										{% block tab_name %}
+										<h4><i class="fa fa-table"></i>Dashboard</h4>
+										{% endblock %}
+										<div class="tools hidden-xs">
+											<a href="#box-config" data-toggle="modal" class="config">
+												<i class="fa fa-cog"></i>
+											</a>
+											<a href="javascript:;" class="reload">
+												<i class="fa fa-refresh"></i>
+											</a>
+											<a href="javascript:;" class="collapse">
+												<i class="fa fa-chevron-up"></i>
+											</a>
+											<a href="javascript:;" class="remove">
+												<i class="fa fa-times"></i>
+											</a>
+										</div>
+									</div>
+									<div class="box-body">
+                                        {% block tab_model %}
+										<table id="datatable1" cellpadding="0"
+                                               cellspacing="0" border="0"
+                                               class="datatable table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>Service Name</th>
+													<th>Service Owner</th>
+													<th class="hidden-xs">status</th>
+													<th>Create Date</th>
+													<th class="hidden-xs">Remark</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="gradeX">
+													<td>Trident</td>
+													<td>
+														Internet Explorer-4.0
+														</td>
+													<td class="hidden-xs">Win 95+</td>
+													<td>4</td>
+													<td class="center hidden-xs">X</td>
+												</tr>
+												<tr class="gradeC">
+													<td>Trident</td>
+													<td>Internet
+														 Explorer 5.0</td>
+													<td class="hidden-xs">Win 95+</td>
+													<td class="center">5</td>
+													<td class="center hidden-xs">C</td>
+												</tr>
+												<tr class="gradeA">
+													<td>Trident</td>
+													<td>Internet
+														 Explorer 5.5</td>
+													<td class="hidden-xs">Win 95+</td>
+													<td class="center">5.5</td>
+													<td class="center hidden-xs">A</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th>Service Name</th>
+													<th>Service Owner</th>
+													<th class="hidden-xs">status</th>
+													<th>Create Date</th>
+													<th class="hidden-xs">Remark</th>
+												</tr>
+											</tfoot>
+										</table>
+                                        {% endblock %}
+									</div>
+								</div>
+								{% endblock %}
+								<!-- /BOX -->
+							</div>
+						</div>
+						<!-- /DATA TABLES -->
+
+						{% block page_foot %}
+						<div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+						</div>
+						{% endblock %}
+					</div><!-- /CONTENT-->
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="{{ url_for('static', filename='js/jquery/jquery-2.0.3.min.js') }}"></script>
+	<!-- JQUERY UI-->
+	<script src="{{ url_for('static', filename='js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+	<!-- BOOTSTRAP -->
+	<script src="{{ url_for('static', filename='bootstrap-dist/js/bootstrap.min.js') }}"></script>
+
+
+	<!-- DATE RANGE PICKER -->
+	<script src="{{ url_for('static', filename='js/bootstrap-daterangepicker/moment.min.js') }}"></script>
+
+	<script src="{{ url_for('static', filename='js/bootstrap-daterangepicker/daterangepicker.min.js') }}"></script>
+	<!-- SLIMSCROLL -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js') }}"></script>
+	<!-- BLOCK UI -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jQuery-BlockUI/jquery.blockUI.min.js') }}"></script>
+	<!-- DATA TABLES -->
+	<script type="text/javascript" src="{{ url_for('static',filename='js/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/datatables/media/assets/js/datatables.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/datatables/extras/TableTools/media/js/ZeroClipboard.min.js') }}"></script>
+	<!-- COOKIE -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jQuery-Cookie/jquery.cookie.min.js') }}"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	<script>
+		jQuery(document).ready(function() {
+			App.setPage("dynamic_table");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>
