@@ -1,6 +1,6 @@
 # Description
 I tried to find some popular open source CMDB system, I succeed. <br/>
-And then I tired to pick up one whick should be easy to handle, I failed.</br>
+And then I tired to pick up one which should be easy to handle, I failed.</br>
 I am not sure why, and I do not want to figure it out. Since I decide to make one all by myself.
 
 ## How to start
