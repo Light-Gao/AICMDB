@@ -1,9 +1,13 @@
-#Description(add requirements):<br/>
-##version-0.1<br/>
-- 完成svc_base.html模板,查询service/resource/svcInstance<br/>
-##version-0.2<br/>
-- 新增/修改/删除(修改状态)--service/resource/svcInstance
-- 与后端自动化部署软件集成设计思路：
-  -->设计service type[service plugins]/可以设置固定plugins目录，程序内自动解析此目录下的已实现特定API的插件<br/>
-  -->然后决定后端调用不同的 implementor {ansible/puppet/任何具有api的程序/等等}<br/>
-  -->接上条：关于中间件服务后端可以连接自动化部署工具/应用服务的话，可以对接PaaS平台/管理应用生命周期[含权限]<br/>
+# Description
+I tried to find some popular open source CMDB system, I succeed. <br/>
+And then I tired to pick up one whick should be easy to handle, I failed.</br>
+I am not sure why, and I do not want to figure it out. Since I decide to make one all by myself.
+
+## How to start
+1.Clone this project;
+2.Install python3(at least python3.5.2) on your host;
+3.Change directory into AICMDB, then execute `python manager.py`;
+4.You may browser it through http://ip:6688(which configured in enums/globalenums.py);
+
+## License
+GPL license, which means you must keep it as open source project no matter what and keep the same license in your project.
