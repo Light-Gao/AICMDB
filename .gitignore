@@ -14,4 +14,4 @@ build/
 
 # My configurations:
 migrations/
-.ide/
+.idea/
