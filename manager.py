@@ -18,7 +18,7 @@ manager = Manager(app)
 #Generate Migrate object using app & db object
 migrate = Migrate(app, models.db)
 
-#为manager增加指令，届时可直接把 server 作为sub-command
+#为manager增加指令，届时可直接以 server 作为sub-command
 #即 python manager.py server/ python manager.py db ...
 manager.add_command("server", Server(host='0.0.0.0', port=globalenums.DEFAULT_PORT))
 manager.add_command("db", MigrateCommand)
