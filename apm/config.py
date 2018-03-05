@@ -3,6 +3,7 @@
 class Config(object):
     """Base config class."""
     SECRET_KEY = '04204d5e2dfc22dd86090e0a8e964129'
+    CELERY_REDIS_URL = 'redis://10.10.100.25:6379/6'
 
 class ProdConfig(Config):
     """Production config class."""

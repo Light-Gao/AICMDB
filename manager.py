@@ -5,6 +5,7 @@ Mailto: gaoliang@asiainfo.com
 """
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
+from celery import Celery
 from apm import create_app, models
 from apm.enums import globalenums
 from os import environ
@@ -17,9 +18,11 @@ app = create_app('apm.config.%sConfig' % env.capitalize())
 manager = Manager(app)
 #Generate Migrate object using app & db object
 migrate = Migrate(app, models.db)
+#Create Celery Instance | broker is configured in config.py
+celery_task_queue = Celery(app.name, broker=app.config['CELERY_REDIS_URL'])
 
-#为manager增加指令，届时可直接以 server 作为sub-command
-#即 python manager.py server/ python manager.py db ...
+#add executive for manager, then you may take 'server' as sub-command
+#namely, python manager.py server/ python manager.py db/ etc.
 manager.add_command("server", Server(host='0.0.0.0', port=globalenums.DEFAULT_PORT))
 manager.add_command("db", MigrateCommand)
 
@@ -27,10 +30,12 @@ manager.add_command("db", MigrateCommand)
 def make_shell_context():
     #Create a python CLI.
     # return: Default import object |type: `Dict`
-    # 确保有导入 Flask app object，否则启动的 CLI Context 中仍然没有 app 对象
+    # make sure Flask app object has been imported,
+    # otherwise CLI Context has no app object, which will lead to error...
     return dict(app=app, db=models.db, User=models.User,
                 Resource=models.Resource, Service=models.Service,
                 SvcInstance=models.SvcInstance)
 
+#execute on localhost IDE, lazy me...
 if __name__ == '__main__':
     manager.run(default_command='server')

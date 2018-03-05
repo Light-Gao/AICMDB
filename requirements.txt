@@ -36,6 +36,7 @@ dill==0.2.4
 docutils==0.12
 dynd===c328ab7
 et-xmlfile==1.0.1
+eventlet==0.22.1
 fastcache==1.0.2
 Flask==0.10.1
 Flask-Bcrypt==0.7.1
@@ -140,6 +141,7 @@ traitlets==4.2.1
 unicodecsv==0.14.1
 vine==1.1.4
 Werkzeug==0.11.4
+win-unicode-console==0.5
 WTForms==2.1
 xlrd==0.9.4
 XlsxWriter==0.8.4
