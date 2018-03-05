@@ -1,7 +1,4 @@
-"""Author  Light Gao
-Mailto  gaoliang@asiainfo.com
-Date    20180112
-Last Modified 20180228"""
+"""Author  Light Gao"""
 from os import path
 from flask import render_template, Blueprint, redirect, url_for
 from apm.forms import SvcInstanceForm
