@@ -1,3 +1,5 @@
+#Some configurations must exist when application is running
+#Different from enums/*.py.
 class Config(object):
     """Base config class."""
     SECRET_KEY = '04204d5e2dfc22dd86090e0a8e964129'
