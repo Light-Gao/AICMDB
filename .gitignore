@@ -4,12 +4,13 @@ ehthumbs.db
 Desktop.ini
 
 # Python:
+__pycache__/
 *.py[cod]
 *.so
 *.egg
 *.egg-info
-dist
-build
+dist/
+build/
 
 # My configurations:
-/migrations
+migrations/
