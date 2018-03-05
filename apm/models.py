@@ -16,7 +16,7 @@ class User(db.Model):
     apm_user_id = db.Column(db.Integer, primary_key=True)
     apm_user_name = db.Column(db.String(64))
     apm_user_passwd = db.Column(db.String(255))
-    status = db.Column(db.String(16))
+    status = db.Column(db.String(8))
     remark = db.Column(db.String(255))
     #one to many virtual columns
     service = db.relationship('Service', backref='apm_user', lazy='dynamic')

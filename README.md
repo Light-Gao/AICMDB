@@ -6,7 +6,7 @@ I am not sure why, and I do not want to figure it out. Since I decide to make on
 # Using components
 1. Flask
 2. SQLAlchemy
-3. Extensions: flask-sqlalchemy/flask-wtf/flask-migrate...
+3. Extensions: flask-sqlalchemy/flask-wtf/flask-migrate/flask-bcrypt...
 You may find these extensions in `requirements.txt` file.
 
 ## How to start
