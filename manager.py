@@ -5,21 +5,25 @@ Mailto: gaoliang@asiainfo.com
 """
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
-from celery import Celery
-from apm import create_app, models
 from apm.enums import globalenums
+from apm.tasks.deploysvcinst import celery_task_queue
+from apm import create_app, models
 from os import environ
 
 #Obtain env on host, if NOT exists then use 'dev'
 env = environ.get('APM_ENV', 'dev')
 #Generate app based on env('dev' or some other self-define value) via Factory Method
 app = create_app('apm.config.%sConfig' % env.capitalize())
+#app logger format
+
+#log app creation
+app.logger.debug('application has been created...')
 #Generate Manager object using app object
 manager = Manager(app)
 #Generate Migrate object using app & db object
 migrate = Migrate(app, models.db)
-#Create Celery Instance | broker is configured in config.py
-celery_task_queue = Celery(app.name, broker=app.config['CELERY_REDIS_URL'])
+#Update config for celery instance
+celery_task_queue.conf.update(app.config)
 
 #add executive for manager, then you may take 'server' as sub-command
 #namely, python manager.py server/ python manager.py db/ etc.

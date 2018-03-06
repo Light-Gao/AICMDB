@@ -3,7 +3,8 @@
 class Config(object):
     """Base config class."""
     SECRET_KEY = '04204d5e2dfc22dd86090e0a8e964129'
-    CELERY_REDIS_URL = 'redis://10.10.100.25:6379/6'
+    LOGGER_NAME = 'MiniCMDB'
+
 
 class ProdConfig(Config):
     """Production config class."""
@@ -17,3 +18,5 @@ class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://apm:abc123@10.10.100.98:3306/apm'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    CELERY_BROKER_URL = 'redis://10.10.100.25:6379/6'
+    CELERY_RESULT_BACKEND = 'redis://10.10.100.25:6379/6'

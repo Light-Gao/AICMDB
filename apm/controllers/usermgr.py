@@ -1,5 +1,5 @@
 from os import path
-from flask import render_template, Blueprint, redirect, url_for, flash, request
+from flask import render_template, Blueprint, redirect, url_for, flash
 from apm.forms import LoginForm, RegisterForm
 from apm.models import db, User, Service
 

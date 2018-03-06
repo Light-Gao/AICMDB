@@ -5,7 +5,7 @@ from apm.models import db
 from apm.extensions import bcrypt
 from apm.enums import globalenums
 
-#create application
+#create application function
 def create_app(object_name):
     app = Flask(__name__)
     app.config.from_object(object_name)
@@ -21,4 +21,5 @@ def create_app(object_name):
     #register Blueprint into app object
     app.register_blueprint(servicemgr.svc_blueprint)
     app.register_blueprint(usermgr.user_blueprint)
+
     return app
