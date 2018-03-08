@@ -50,11 +50,19 @@ svc_res = db.Table('apm_svc_res_rel',
                    db.Column('apm_service_id', db.Integer, db.ForeignKey('apm_service.apm_service_id')),
                    db.Column('apm_resource_id', db.Integer, db.ForeignKey('apm_resource.apm_resource_id')))
 
+#Table for relationship between service and attribute
+svc_attr = db.Table('apm_svc_attr_rel',
+                    db.Column('apm_svc_attr_rel_id', db.Integer, primary_key=True),
+                    db.Column('apm_service_id', db.Integer, db.ForeignKey('apm_service.apm_service_id')),
+                    db.Column('apm_attr_id', db.Integer, db.ForeignKey('apm_attribute.apm_attr_id')))
+
+
 '''Model for table apm_service'''
 class Service(db.Model):
     __tablename__ = 'apm_service'
     apm_service_id = db.Column(db.Integer, primary_key=True)
     apm_service_name = db.Column(db.String(128))
+    apm_service_type = db.Column(db.Integer)
     status = db.Column(db.String(8))
     create_date = db.Column(db.DateTime)
     apm_user_id = db.Column(db.Integer, db.ForeignKey('apm_user.apm_user_id'))
@@ -64,6 +72,9 @@ class Service(db.Model):
     #many to many virtual columns
     resource = db.relationship('Resource', secondary=svc_res,
                                backref=db.backref('apm_service', lazy='dynamic'))
+    #many to many virtual columns
+    attribute = db.relationship('Attribute', secondary=svc_attr,
+                                backref=db.backref('apm_service', lazy='dynamic'))
 
     def __repr__(self):
         output = "(%s,%s,%s,%s)" % \
@@ -103,4 +114,20 @@ class SvcInstance(db.Model):
                  (self.apm_svc_inst_id, self.apm_svc_inst_name,
                   self.apm_service_id, self.status, self.create_date,
                   self.apm_user_id)
+        return output
+
+"""Model for table apm_attribute"""
+class Attribute(db.Model):
+    __tablename__ = 'apm_attribute'
+    apm_attr_id = db.Column(db.Integer, primary_key=True)
+    apm_attr_name = db.Column(db.String(32))
+    apm_attr_code = db.Column(db.String(32))
+    apm_attr_type = db.Column(db.Integer)
+    create_date = db.Column(db.DateTime)
+    remark = db.Column(db.String(255))
+
+    def __repr__(self):
+        output = "(%s,%s,%s,%s,%s)" % \
+                 (self.apm_attr_name, self.apm_attr_code,
+                  self.apm_attr_type, self.create_date, self.remark)
         return output

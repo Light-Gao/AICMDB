@@ -38,7 +38,7 @@ def make_shell_context():
     # otherwise CLI Context has no app object, which will lead to error...
     return dict(app=app, db=models.db, User=models.User,
                 Resource=models.Resource, Service=models.Service,
-                SvcInstance=models.SvcInstance)
+                SvcInstance=models.SvcInstance, Attribute=models.Attribute)
 
 #execute on localhost IDE, lazy me...
 if __name__ == '__main__':

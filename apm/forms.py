@@ -2,15 +2,18 @@
 Author  Light Gao
 """
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
+from wtforms import StringField, PasswordField, TextAreaField, IntegerField
 from wtforms import validators
 from apm.models import User
 
 #Form for add svc instance
-class SvcInstanceForm(FlaskForm):
+class AnsibleSvcInstanceForm(FlaskForm):
     name = StringField('Name', [validators.DataRequired(),
                                 validators.Length(max=255)])
     remark = TextAreaField('Remark', [validators.Length(max=255)])
+    nodes = IntegerField('nodes', [validators.DataRequired()])
+    port = IntegerField('port', [validators.DataRequired()])
+
 
 #Form for add Login page
 class LoginForm(FlaskForm):

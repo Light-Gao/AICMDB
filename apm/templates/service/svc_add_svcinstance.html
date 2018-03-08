@@ -34,7 +34,9 @@
         </div>
         <div class="box-body">
             <form class="form-horizontal" method="POST"
-                  action="{{ url_for('svc.add_svc_instance', service_id=svc.apm_service_id) }}">
+                  action="{{ url_for('svc.add_svc_instance',
+                                      service_id=svc.apm_service_id,
+							  		  service_type = svc.apm_service_type) }}">
               {{ form.hidden_tag() }}
               <div class="form-group">
                 <label class="col-md-2 control-label">Service Instance Name</label>
@@ -52,6 +54,27 @@
                    </div>
                 </div>
               </div>
+              <div class="separator"></div>
+
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Number of Node</label>
+                <div class="col-md-10">
+                   <div class="col-md-10">
+                       {{ form.nodes(class_="form-control", placeholder="Input node number here...") }}
+                   </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Port</label>
+                <div class="col-md-10">
+                   <div class="col-md-10">
+                       {{ form.port(class_="form-control", placeholder="Input port number here...") }}
+                   </div>
+                </div>
+              </div>
+
               <div class="checkbox">
                   <label><input type="checkbox" checked> Active Now!</label>
               </div>

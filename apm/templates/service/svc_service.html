@@ -20,7 +20,9 @@
 	<tbody>
 		{% for svc in service %}
 		<tr class="gradeA">
-			<td><a href = "{{ url_for('svc.add_svc_instance', service_id = svc.apm_service_id) }}">
+			<td><a href = "{{ url_for('svc.add_svc_instance',
+							  		   service_id = svc.apm_service_id,
+							  		   service_type = svc.apm_service_type) }}">
 				{{ svc.apm_service_name }}</a>
 			</td>
 		  <td>{{ svc.apm_user.apm_user_name }}</td>
