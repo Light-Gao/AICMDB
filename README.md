@@ -5,7 +5,7 @@ I am not sure why, and I do not want to figure it out. Since I decide to make on
 As you see, the name of this project is 'AICMDB', but I still want to name it 'MiniCMDB' as a product
 name, and I will call it with this name below...
 
-# Using components
+# Using components/Framework
 1. Flask
 2. SQLAlchemy
 3. Extensions: flask-sqlalchemy/flask-wtf/flask-migrate/flask-bcrypt...
@@ -16,11 +16,13 @@ You may find these extensions in `requirements.txt` file.
 2. Install python3(at least python3.5.2) on your host;
 3. Install all dependencies in requirements.txt: `pip install requirements.txt`;
 4. Make sure you have Mysql installed on your host, and database(configured in config.py) exists ;
-5. Prepare database: changing directory into project of AICMDB,
+5. Make sure you have Redis installed on your host or the right machine,
+and port configured as 6379 which could be modified in globalenums.py;
+6. Prepare database: changing directory into project of AICMDB,
 execute `python manager.py db init` to initial migration repository,
 then `python manager.py db migrate` to identify differences between database and its definition in code(models.py),
 at last `python manager.py db upgrade` to make synchronization;
-6. After preparation above, you may start this web application by `python manager.py [server]`,
+7. After preparation above, you may start this web application by `python manager.py [server]`,
 browser it through `http://ip:6688`(which configured in enums/globalenums.py);
 
 ## Start to use this system
