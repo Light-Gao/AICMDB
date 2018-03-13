@@ -17,8 +17,8 @@ You may find these extensions in `requirements.txt` file.
 3. Install all dependencies in requirements.txt: `pip install requirements.txt`;
 4. Make sure you have Mysql installed on your host, and database(configured in config.py) exists ;
 5. Make sure you have Redis installed on your host or the right machine,
-and port configured as 6379 which could be modified in globalenums.py;
-6. Prepare database: changing directory into project of AICMDB,
+and port configured as 6379 which could be modified in `globalenums.py`;
+6. Initial database: changing directory into project of AICMDB,
 execute `python manager.py db init` to initial migration repository,
 then `python manager.py db migrate` to identify differences between database and its definition in code(models.py),
 at last `python manager.py db upgrade` to make synchronization;

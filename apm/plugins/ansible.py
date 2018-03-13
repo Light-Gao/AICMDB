@@ -7,14 +7,13 @@ functions below:
  .. 1. gen_executive(*args, **kwargs);
  .. 2. execute(*args, **kwargs);
 
-Version 0.1: execute command on remote host directly
+Version 0.1: execute command[ansible-playbook] on remote host directly
 Version 0.2: encapsulating ansible API
 """
 
 
 
 from paramiko import SSHClient, AutoAddPolicy
-from time import sleep
 from logging import getLogger
 
 #initial logger
@@ -30,25 +29,29 @@ def gen_executive(*args, **kwargs):
         logger.info('Starting to generate executive(s)...')
         logger.info('Ansible deployment for zookeeper cluster, '
                      'nodes [{0}], port [{1}].'.format(kwargs['nodes'], kwargs['port']))
-        return 'ansible-playbook -i [hosts] zookeeper.yml ' \
-               '-e "nodes={0} port={1}"'.format(kwargs['nodes'], kwargs['port'])
+        return 'ansible-playbook site.yml ' \
+               '-e "zk_install_dir=/opt/testzk zk_client_port={0}"'.format(kwargs['port'])
 
 
 #Function: execute -- to execute command(s) generated above
 def execute(executive):
     """Definition"""
     logger.info('Starting to execute [%s]...' % executive)
-    sleep(5)
+    conn = get_ssh_conn(host='10.10.100.22', port=22, user='root', passwd='docker01')
+    stdin, stdout, stderr = conn.exec_command(executive)
+    logger.info(stdout.read().decode())
+    logger.info(stderr.read().decode())
     logger.info('Deployment finished!')
     return True
 
-
-
-if __name__ == '__main__':
-    ssh = SSHClient()
-    ssh.set_missing_host_key_policy(AutoAddPolicy())
-    ssh.connect(hostname='10.10.100.131', port=22, username='root', password='admin@123')
-    stdin, stdout, stderr = ssh.exec_command('ls')
-    out = stdout.read()
-    print(out.decode())
-
+#Function: get SSHClient instance
+def get_ssh_conn(**kwargs):
+    conn = None
+    if kwargs is None:
+        logger.error('Error, no essential input[host|port|user|passwd] for connection generation...')
+    else:
+        conn = SSHClient()
+        conn.set_missing_host_key_policy(AutoAddPolicy())
+        conn.connect(hostname=kwargs['host'], port=kwargs['port'],
+                     username=kwargs['user'], password=kwargs['passwd'])
+    return conn
