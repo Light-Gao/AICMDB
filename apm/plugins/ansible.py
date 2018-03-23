@@ -12,7 +12,6 @@ Version 0.2: encapsulating ansible API
 """
 
 
-
 from paramiko import SSHClient, AutoAddPolicy
 from logging import getLogger
 

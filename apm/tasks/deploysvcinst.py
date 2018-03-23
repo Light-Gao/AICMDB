@@ -4,7 +4,6 @@ from celery.utils.log import get_task_logger
 from apm.enums import globalenums
 from apm.plugins import ansible
 
-__all__ = ['logger', 'async_deploy_svc_inst']
 
 #initail celery instance
 celery_task_queue = Celery('Celery', broker=globalenums.CELERY_BROKER_URL)
@@ -16,6 +15,7 @@ logger = get_task_logger('Celery')
 @celery_task_queue.task
 def async_deploy_svc_inst(svc_type=None, nodes=None, port=None):
     if svc_type is None or nodes is None or port is None:
+        logger.error('No service type input, please check...')
         return False
     else:
         logger.info('Service type is %s, asynchronous task starting...' % svc_type)

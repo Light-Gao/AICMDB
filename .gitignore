@@ -14,5 +14,6 @@ build/
 
 # My configurations:
 migrations/
+venv/
 .idea/workspace.xml
 

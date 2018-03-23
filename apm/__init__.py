@@ -14,6 +14,7 @@ def create_app(object_name):
     #init bcrypt object via app object
     bcrypt.init_app(app)
 
+    #add route for index
     @app.route('/')
     def index():
         return redirect(url_for(globalenums.DEFAULT_INDEX))
