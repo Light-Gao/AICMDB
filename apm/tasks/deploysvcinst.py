@@ -13,26 +13,28 @@ logger = get_task_logger('Celery')
 # encapsulating all kinds plugins(service deployment only) in apm.plugins directory
 # arranging data flow for sub-task(s) if needed...
 @celery_task_queue.task
-def async_deploy_svc_inst(svc_type=None, nodes=None, port=None):
-    if svc_type is None or nodes is None or port is None:
+def async_deploy_svc_inst(svc_type=None, *args, **kwargs):
+    #service type is the only and essential precondition/parameter
+    if svc_type is None:
         logger.error('No service type input, please check...')
         return False
-    else:
-        logger.info('Service type is %s, asynchronous task starting...' % svc_type)
-        logger.info('Service deployment: node number --> %s...' % nodes)
-        logger.info('Service deployment: port number --> %s...' % port)
-        cmd = gen_executive_cmd(svc_type=svc_type, nodes=nodes, port=port)
-        logger.info('The executive is: %s' % cmd)
-        logger.info('Asynchronous task published!')
+    elif svc_type == 'Ansible':
+        #log service type info
+        logger.info('Service type is [%s], asynchronous task starting...' % svc_type)
+        #get an executor | name attribute may re-defined by other ways
+        cur_executor = ansible.get_executor(name='AnsibleExecutor', *args, **kwargs)
+        #initial executor above or initial it like below...
+        #cur_executor.init_executor(svc_type, *args, **kwargs)
 
-#create executives
-def gen_executive_cmd(*args, **kwargs):
-    if args is None and kwargs is None:
-        logger.error('No service type input, please check...')
-        return 'Error, no service type input, nothing to do...'
-    elif kwargs['svc_type'] == 'Ansible':
-        logger.info('Service type is %s...' % kwargs['svc_type'])
-        executive = ansible.gen_executive(*args, **kwargs)
-        if executive:
-            ansible.execute(executive)
-        return executive
+        # log executor info
+        logger.info('Task -- The current executor is: [%s].' % cur_executor.__executor_name__)
+        logger.info('The current executor version is [%s].' % cur_executor.__api_version__)
+
+        #execute current executor, so Plugins must have such a function named execute(exec_mode)
+        cur_executor.execute(exec_mode='simple')
+
+        logger.info('Asynchronous task finished!')
+
+        return True
+    else:
+        return False

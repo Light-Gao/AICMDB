@@ -1,13 +1,13 @@
 """Forms Definition For Pages
 Author  Light Gao
 """
-from flask_wtf import FlaskForm
+from flask_wtf import Form
 from wtforms import StringField, PasswordField, TextAreaField, IntegerField
 from wtforms import validators
 from apm.models import User
 
 #Form for add svc instance
-class AnsibleSvcInstanceForm(FlaskForm):
+class AnsibleSvcInstanceForm(Form):
     name = StringField('Name', [validators.DataRequired(),
                                 validators.Length(max=255)])
     remark = TextAreaField('Remark', [validators.Length(max=255)])
@@ -16,7 +16,7 @@ class AnsibleSvcInstanceForm(FlaskForm):
 
 
 #Form for add Login page
-class LoginForm(FlaskForm):
+class LoginForm(Form):
     user_name = StringField('Username', [validators.DataRequired(),
                                          validators.Length(max=64)])
     user_passwd = PasswordField('Password', [validators.DataRequired(),
@@ -41,7 +41,7 @@ class LoginForm(FlaskForm):
         return True
 
 #Form for register new user
-class RegisterForm(FlaskForm):
+class RegisterForm(Form):
     user_name = StringField('Username', [validators.DataRequired(),
                                          validators.Length(max=64)])
     user_passwd = PasswordField('Password', [validators.DataRequired,
