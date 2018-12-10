@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
-	<title>{% block title %}AIPMO's CMDB{% endblock %}</title>
+	<title>{% block title %}AIPMO 配置管理中心{% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -51,19 +51,19 @@
 						<ul>
 							<li class="active">
 								<a href="{{ url_for('svc.dashboard') }}">
-								<i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">Dashboard</span>
+								<i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">仪表盘</span>
 								<span class="selected"></span>
 								</a>
 							</li>
 							<li class="has-sub">
 								<a href="javascript:;" class="">
-								<i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">Service Manager</span>
+								<i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">服务簇管理</span>
 								<span class="arrow"></span>
 								</a>
 								<ul class="sub">
-									<li><a class="" href="{{ url_for('svc.show_svc') }}"><span class="sub-menu-text">Service</span></a></li>
-									<li><a class="" href="{{ url_for('svc.show_resource') }}"><span class="sub-menu-text">Resource</span></a></li>
-									<li><a class="" href="{{ url_for('svc.show_svc_instance') }}"><span class="sub-menu-text">Service Instance</span></a></li>
+									<li><a class="" href="{{ url_for('svc.show_svc') }}"><span class="sub-menu-text">服务管理</span></a></li>
+									<li><a class="" href="{{ url_for('svc.show_resource') }}"><span class="sub-menu-text">资源管理</span></a></li>
+									<li><a class="" href="{{ url_for('svc.show_svc_instance') }}"><span class="sub-menu-text">服务运行实例</span></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -86,7 +86,7 @@
 									<ul class="breadcrumb">
 										<li>
 											<i class="fa fa-home"></i>
-											<a href="{{ url_for('svc.dashboard') }}">Home</a>
+											<a href="{{ url_for('svc.dashboard') }}">主页</a>
 										</li>
 										{% block cur_page_name %}
 										<li>Dashboard</li>

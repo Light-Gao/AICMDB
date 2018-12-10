@@ -1,8 +1,8 @@
 {% extends "svc_base.html" %}
-{% block title %}AIPMO's Service Instance{% endblock %}
-{% block cur_page_name %}<li>Service Instance</li>{% endblock %}
-{% block page_name_nav %}<h4 class="content-title pull-left">Service Instance</h4>{% endblock %}
-{% block tab_name %}<h4><i class="fa fa-table"></i>Service Instance Information</h4>{% endblock %}
+{% block title %}AIPMO 服务运行实例{% endblock %}
+{% block cur_page_name %}<li>服务实例</li>{% endblock %}
+{% block page_name_nav %}<h4 class="content-title pull-left">服务实例</h4>{% endblock %}
+{% block tab_name %}<h4><i class="fa fa-table"></i>服务实例详细信息</h4>{% endblock %}
 <!-- Replace the BODY of template svc_base.html -->
 {% block tab_model %}
 <table id="datatable1" cellpadding="0"
@@ -10,12 +10,12 @@
        class="datatable table table-striped table-bordered table-hover">
 	<thead>
 		<tr>
-		  <th>Instance Name</th>
-		  <th>Instance Owner</th>
-          <th>Service Name</th>
-		  <th class="hidden-xs">status</th>
-		  <th>Create Date</th>
-		  <th class="hidden-xs">Remark</th>
+		  <th>服务实例名称</th>
+		  <th>实例归属</th>
+          <th>服务名称</th>
+		  <th class="hidden-xs">状态</th>
+		  <th>创建日期</th>
+		  <th class="hidden-xs">备注信息</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,15 +36,5 @@
 		</tr>
 		{% endfor %}
 	</tbody>
-	<tfoot>
-		<tr>
-          <th>Instance Name</th>
-		  <th>Instance Owner</th>
-          <th>Service Name</th>
-		  <th class="hidden-xs">status</th>
-		  <th>Create Date</th>
-		  <th class="hidden-xs">Remark</th>
-		</tr>
-	</tfoot>
 </table>
 {% endblock %}
