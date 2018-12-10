@@ -1,6 +1,6 @@
 {% extends "svc_base.html"%}
-{% block title %}Add instance for {{ svc.apm_service_name }}{% endblock %}
-{% block page_name_nav %}<h5 class="content-title pull-left">Add Service Instance</h5>{% endblock %}
+{% block title %}创建服务实例 {{ svc.apm_service_name }}{% endblock %}
+{% block page_name_nav %}<h5 class="content-title pull-left">创建服务实例</h5>{% endblock %}
 <!-- Replace the BODY of template svc_base.html -->
 {% block box %}
 <h4>
@@ -16,7 +16,7 @@
 <div class="col-md-12">
     <div class="box border dark">
         <div class="box-title">
-            <h4><i class="fa fa-bars"></i>Add Service Instance</h4>
+            <h4><i class="fa fa-bars"></i>创建服务实例</h4>
             <div class="tools">
                 <a href="#box-config" data-toggle="modal" class="config">
                     <i class="fa fa-cog"></i>
@@ -39,7 +39,7 @@
 							  		  service_type = svc.apm_service_type) }}">
               {{ form.hidden_tag() }}
               <div class="form-group">
-                <label class="col-md-2 control-label">Service Instance Name</label>
+                <label class="col-md-2 control-label">服务实例名称</label>
                 <div class="col-md-10">
                     <div class="col-md-10">
                       {{ form.name(class_="form-control", placeholder="Instance Name here...") }}
@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-2 control-label">Remark</label>
+                <label class="col-md-2 control-label">备注</label>
                 <div class="col-md-10">
                    <div class="col-md-10">
                        {{ form.remark(rows="2", cols="5", id="remark", class="countable form-control") }}
@@ -58,7 +58,7 @@
 
 
               <div class="form-group">
-                <label class="col-md-2 control-label">Number of Node</label>
+                <label class="col-md-2 control-label">节点数量</label>
                 <div class="col-md-10">
                    <div class="col-md-10">
                        {{ form.nodes(class_="form-control", placeholder="Input node number here...") }}
@@ -67,7 +67,7 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-2 control-label">Port</label>
+                <label class="col-md-2 control-label">端口</label>
                 <div class="col-md-10">
                    <div class="col-md-10">
                        {{ form.port(class_="form-control", placeholder="Input port number here...") }}
@@ -76,9 +76,9 @@
               </div>
 
               <div class="checkbox">
-                  <label><input type="checkbox" checked> Active Now!</label>
+                  <label><input type="checkbox" checked> 立即生效！</label>
               </div>
-              <button type="submit" class="btn btn-danger">Add Now</button>
+              <button type="submit" class="btn btn-danger">现在创建</button>
 
             </form>
         </div>

@@ -18,5 +18,5 @@ class DevConfig(Config):
     # Open DEBUG mode
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://apm:abc123@10.10.100.98:3306/apm'
-    CELERY_BROKER_URL = 'redis://10.10.100.25:6379/6'
-    CELERY_RESULT_BACKEND = 'redis://10.10.100.25:6379/6'
+    CELERY_BROKER_URL = 'redis://127.0.0.1:8378/1'
+    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:8378/2'
