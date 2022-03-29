@@ -102,7 +102,7 @@ ordereddict==1.1
 padme==1.1.1
 pandas==0.22.0
 pandocfilters==1.4.2
-paramiko==2.4.1
+paramiko==2.10.1
 partd==0.3.2
 path.py==11.0
 patsy==0.4.0
